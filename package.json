@@ -1,15 +1,16 @@
 {
   "name": "js-to-do",
   "version": "1.0.0",
-  "description": "As a student I wish to learn more so please feel free to fork, and optimize, add features.",
-  "main": "index.html",
+  "description": "",
+  "private": true,
   "scripts": {
-    "start": "http-server"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ergo123/js-to-do.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,6 +18,11 @@
   },
   "homepage": "https://github.com/ergo123/js-to-do#readme",
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "redux": "^4.0.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }

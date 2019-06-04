@@ -1,5 +1,7 @@
 "use strict";
 
+import { initializeList, addItem, hideDialog } from './handlers';
+
 initializeList();
 
 const taskInput = document.querySelector('input.task');

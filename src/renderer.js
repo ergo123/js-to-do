@@ -1,9 +1,14 @@
+import _ from 'lodash';
+import { displayDialog, toggleStar, removeItem} from './handlers';
+
 const LIST_TEMPLATE = _.template(`
     <section class="<%= clazz %>" style="">
         <h3><%= name %></h3>
+        <h3>lodash<%= _ %>:::<%= myvar %><%= list %></h3>
         <ul>
         <% _.forEach(item => { %>
             <li>
+                <h3>hello word</h3>
                 <span onclick="displayDialog('<%= item.id %>')"><%= item.value %></span>
                 <div class="btns">
                     <svg onclick="toggleStar('<%= item.id %>')" viewBox="0 0 36 36" width="36" height="36" class="fav" preserveAspectRatio="xMidYMid"><path d="M23 11L18 0l-5 11c-.4.5-1 1-1.6 1L0 13.8l8.3 8.4c.4.5.6 1.2.5 2L6.8 36 17 30.4l1-.3c.4 0 .7.4 1 .6L29 36l-1.8-12c0-.6 0-1.3.5-1.8l8.3-8.4L24.6 12c-.7 0-1.2-.5-1.5-1z" class="favPath"></path></svg>
@@ -29,28 +34,31 @@ const DIALOG_TEMPLATE = _.template(`
 `);
 
 const renderList = (name, clazz, list) => {
-    return LIST_TEMPLATE({ name, clazz, list });
+    return LIST_TEMPLATE({ '_': _, myvar:'myvalue2', name, clazz, list });
 };
 
-window.renderTasks = list => renderList('Tasks', 'tasks', list);
-window.renderFavourites = list => renderList('Favourites', 'favs', list);
+export const renderTasks = list => renderList('Tasks', 'tasks', list);
+export const renderFavourites = list => renderList('Favourites', 'favs', list);
 
-window.rerenderLists = () => {
+export const rerenderLists = () => {
+    console.log(window.list);
     const tasks = window.list.filter(item => !item.favourite);
     const favourites = window.list.filter(item => !!item.favourite);
+
+    console.log(renderTasks(tasks));
 
     document.querySelector('#todoTasks').innerHTML = renderTasks(tasks);
     document.querySelector('#todoFavourites').innerHTML = renderFavourites(favourites);
 }
 
-window.renderDialog = (item) => {
+export const renderDialog = (item) => {
     const container = document.querySelector('#dialog .container');
     container.innerHTML = DIALOG_TEMPLATE(item);
     const dialog = document.querySelector('#dialog');
     dialog.className = 'visible';
 };
 
-window.killDialog = () => {
+export const killDialog = () => {
     const dialog = document.querySelector('#dialog');
     dialog.className = '';
 };
