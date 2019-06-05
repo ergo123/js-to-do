@@ -1,4 +1,4 @@
-"use strict";
+import { initializeList, addItem, hideDialog } from './handlers.js';
 
 initializeList();
 
